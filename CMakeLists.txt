@@ -15,6 +15,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapunderflow.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/mapvalue-overrun.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/newmaps.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/stackok.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/packet_access.o
@@ -27,6 +28,7 @@ add_custom_target(samples ALL
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twomaps.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
+                          ${CMAKE_CURRENT_SOURCE_DIR}/build/ubpf.o
                           ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o)
 
 # We use custom commands here so that the same command will be used on
@@ -76,6 +78,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map.c
                    COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/map_in_map.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/map_in_map.o)
 
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/newmaps.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/newmaps.c
+                   COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/newmaps.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/newmaps.o)
+
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c
                    COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/nullmapref.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/nullmapref.o)
@@ -123,6 +129,10 @@ add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twostackvars.o
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/twotypes.c
                    COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/twotypes.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/twotypes.o)
+
+add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/ubpf.o
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/ubpf.c
+                   COMMAND clang -g -target bpf -Wall -O2 -c ${CMAKE_CURRENT_SOURCE_DIR}/src/ubpf.c -o ${CMAKE_CURRENT_SOURCE_DIR}/build/ubpf.o)
 
 add_custom_command(OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/build/wronghelper.o
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/wronghelper.c
